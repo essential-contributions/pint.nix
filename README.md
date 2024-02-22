@@ -13,5 +13,5 @@ A Nix flake for the Yurt intent language.
 
 3. Check that it works with:
    ```console
-   yurt -h
+   yurtc -h
    ```
