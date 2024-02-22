@@ -1,4 +1,5 @@
-{ mkShell
+{ cargo-nextest
+, mkShell
 , yurt
 }:
 mkShell {
@@ -6,6 +7,7 @@ mkShell {
     yurt
   ];
   buildInputs = [
+    cargo-nextest
     # Any required build-time / system deps for yurt
   ];
 }
