@@ -8,8 +8,9 @@ A Nix flake for the Yurt intent language.
 
 2. Use Nix to enter a shell with the `yurtc` and `yurtfmt` CLIs:
    ```console
-   nix shell github:mitchmindtree/yurt.nix
+   nix shell git+ssh://git@github.com/mitchmindtree/yurt.nix
    ```
+   *Note: this will be `nix shell github:mitchmindtree/yurt.nix` once the repo is public.*
 
 3. Check that it works with:
    ```console
