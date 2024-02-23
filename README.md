@@ -29,9 +29,10 @@ A Nix flake for the Yurt intent language.
 
 ## Developing yurt
 
-If you're working on the yurt repo itself, the following command can be useful
-to enter a "development" environment with all of the necessary dependencies and
-environment variables to build yurt with solving enabled and run the tests.
+If you're working on the yurt repo itself, the following command can be
+useful. It allows you to enter a development shell with all of the necessary
+dependencies and environment variables to build yurt with solving enabled and
+run the tests. This includes, rust, scip, clang (for bindgen), etc.
 
 ```console
 nix develop git+ssh://git@github.com/essential-contributions/yurt.nix
