@@ -26,8 +26,10 @@
       };
 
       packages = perSystemPkgs (pkgs: {
+        scip = pkgs.scip;
         yurt = pkgs.yurt;
-        default = inputs.self.packages.${pkgs.system}.yurt;
+        yurtWithSolver = pkgs.yurtWithSolver;
+        default = inputs.self.packages.${pkgs.system}.yurtWithSolver;
       });
 
       devShells = perSystemPkgs (pkgs: {

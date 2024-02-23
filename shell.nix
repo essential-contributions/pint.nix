@@ -1,13 +1,15 @@
 { cargo-nextest
 , mkShell
-, yurt
+, yurtWithSolver
 }:
 mkShell {
   inputsFrom = [
-    yurt
+    yurtWithSolver
   ];
   buildInputs = [
     cargo-nextest
-    # Any required build-time / system deps for yurt
   ];
+  env = {
+    inherit (yurtWithSolver) BINDGEN_EXTRA_CLANG_ARGS LIBCLANG_PATH SCIPOPTDIR;
+  };
 }
