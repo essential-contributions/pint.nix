@@ -2,6 +2,8 @@
 
 A Nix flake for the Yurt intent language.
 
+*Supports Linux & macOS.*
+
 ## Usage
 
 1. Install Nix, easiest with the [Determinate Systems installer](https://github.com/DeterminateSystems/nix-installer).
