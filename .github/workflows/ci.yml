@@ -1,4 +1,4 @@
-name: yurt-nix
+name: pint-nix
 on: [push, pull_request]
 jobs:
   # Check the nix code is formatted.

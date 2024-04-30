@@ -5,7 +5,7 @@
 , rustPlatform
 , scip
 , stdenv
-, yurt-src
+, pint-src
 }:
 let
   # Normally we don't need anything like this for bindgen as
@@ -24,9 +24,9 @@ let
   '';
 in
 rustPlatform.buildRustPackage rec {
-  pname = "yurt";
-  version = (builtins.fromTOML (builtins.readFile "${src}/yurtc/Cargo.toml")).package.version;
-  src = yurt-src;
+  pname = "pint";
+  version = (builtins.fromTOML (builtins.readFile "${src}/pintc/Cargo.toml")).package.version;
+  src = pint-src;
 
   buildNoDefaultFeatures = !enableSolver;
 
