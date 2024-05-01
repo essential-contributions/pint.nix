@@ -1,5 +1,11 @@
 name: pint-nix
-on: [push, pull_request]
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
 jobs:
   # Check the nix code is formatted.
   nix-fmt-check:
