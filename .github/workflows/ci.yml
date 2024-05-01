@@ -28,6 +28,11 @@ jobs:
         command: [build]
     runs-on: ${{ matrix.os }}
     steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: |
+              ${{ secrets.SSH_KEY_BASE }}
+              ${{ secrets.SSH_KEY_PINT }}
       - uses: actions/checkout@v3
       - uses: DeterminateSystems/nix-installer-action@main
       - run: nix ${{ matrix.command }}
