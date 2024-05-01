@@ -16,4 +16,4 @@ jobs:
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v19
         with:
-          inputs: yurt-src
+          inputs: pint-src
