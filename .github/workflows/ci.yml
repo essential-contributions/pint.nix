@@ -35,6 +35,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: DeterminateSystems/nix-installer-action@main
+    - uses: DeterminateSystems/magic-nix-cache-action@main
     - run: nix fmt -- --check ./
 
   # Check the default builds work on both macOS and Linux.
@@ -55,4 +56,5 @@ jobs:
               ${{ secrets.SSH_KEY_BASE }}
               ${{ secrets.SSH_KEY_PINT }}
       - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: nix ${{ matrix.command }}
