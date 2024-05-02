@@ -38,14 +38,15 @@ jobs:
     - uses: DeterminateSystems/magic-nix-cache-action@v4
     - run: nix fmt -- --check ./
 
-  # Check the default builds work on both macOS and Linux.
-  nix-build:
+  # Check the default builds and dev envs work on both macOS and Linux.
+  nix:
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
         command: [
-            "build --print-build-logs --no-update-lock-file"
+            "build --print-build-logs --no-update-lock-file",
+            "develop --print-build-logs --no-update-lock-file",
           ]
     runs-on: ${{ matrix.os }}
     steps:
