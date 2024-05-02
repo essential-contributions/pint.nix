@@ -14,6 +14,20 @@ env:
     CARGO_NET_GIT_FETCH_WITH_CLI: 'true'
 
 jobs:
+  # Test repo access
+  test-repo-access:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: |
+              ${{ secrets.SSH_KEY_BASE }}
+              ${{ secrets.SSH_KEY_PINT }}
+      - name: Test SSH access to essential-base and pint
+        run: |
+          git ls-remote ssh://git@github.com/essential-contributions/essential-base.git HEAD
+          git ls-remote ssh://git@github.com/essential-contributions/pint.git HEAD
+
   # Check the nix code is formatted.
   nix-fmt-check:
     runs-on: ubuntu-latest
