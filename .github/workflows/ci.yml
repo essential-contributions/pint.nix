@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: DeterminateSystems/nix-installer-action@main
+    - uses: DeterminateSystems/nix-installer-action@v10
     - uses: DeterminateSystems/magic-nix-cache-action@main
     - run: nix fmt -- --check ./
 
@@ -55,6 +55,6 @@ jobs:
           ssh-private-key: |
               ${{ secrets.SSH_KEY_BASE }}
               ${{ secrets.SSH_KEY_PINT }}
-      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/nix-installer-action@v10
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: nix ${{ matrix.command }}

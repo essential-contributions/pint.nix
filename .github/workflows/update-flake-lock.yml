@@ -6,14 +6,17 @@ on:
     - cron: '0 0 * * *' # runs nightly at 00:00 UTC
 
 jobs:
+  # Updates the pint-src flake input and open a PR with the updated flake.lock.
   lockfile:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v9
-      - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@v19
+      - uses: actions/checkout@v3
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: |
+              ${{ secrets.SSH_KEY_BASE }}
+              ${{ secrets.SSH_KEY_PINT }}
+      - uses: DeterminateSystems/nix-installer-action@v10
+      - uses: DeterminateSystems/update-flake-lock@v21
         with:
           inputs: pint-src
