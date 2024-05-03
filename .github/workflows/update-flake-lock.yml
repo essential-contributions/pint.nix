@@ -9,6 +9,9 @@ jobs:
   # Updates the pint-src flake input and open a PR with the updated flake.lock.
   lockfile:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - uses: webfactory/ssh-agent@v0.9.0
