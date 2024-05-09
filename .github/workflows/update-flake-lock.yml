@@ -9,14 +9,21 @@ jobs:
   # Updates the pint-src flake input and open a PR with the updated flake.lock.
   lockfile:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: webfactory/ssh-agent@v0.9.0
         with:
+          # Note this includes SSH access to our own repo too.
+          # This is necessary for the action to push to the `update_flake_lock_action` branch.
           ssh-private-key: |
               ${{ secrets.SSH_KEY_BASE }}
               ${{ secrets.SSH_KEY_PINT }}
+              ${{ secrets.SSH_KEY_PINT_NIX }}
       - uses: DeterminateSystems/nix-installer-action@v10
-      - uses: DeterminateSystems/update-flake-lock@v21
+      - uses: DeterminateSystems/update-flake-lock@main
         with:
           inputs: pint-src
+          token: ${{ secrets.GH_PAT_FOR_CI_UPDATES }}
