@@ -19,6 +19,7 @@ jobs:
           ssh-private-key: |
               ${{ secrets.SSH_KEY_BASE }}
               ${{ secrets.SSH_KEY_PINT }}
+              ${{ secrets.SSH_KEY_PINT_NIX }}
       - uses: DeterminateSystems/nix-installer-action@v10
       - uses: DeterminateSystems/update-flake-lock@main
         with:
