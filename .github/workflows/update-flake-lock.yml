@@ -6,7 +6,7 @@ on:
     - cron: '0 0 * * *' # runs nightly at 00:00 UTC
 
 jobs:
-  # Updates the pint-src flake input and open a PR with the updated flake.lock.
+  # Updates the pint-src flake input and opens a PR with the updated flake.lock.
   lockfile:
     runs-on: ubuntu-latest
     permissions:
@@ -19,11 +19,27 @@ jobs:
           # Note this includes SSH access to our own repo too.
           # This is necessary for the action to push to the `update_flake_lock_action` branch.
           ssh-private-key: |
-              ${{ secrets.SSH_KEY_BASE }}
-              ${{ secrets.SSH_KEY_PINT }}
-              ${{ secrets.SSH_KEY_PINT_NIX }}
+            ${{ secrets.SSH_KEY_BASE }}
+            ${{ secrets.SSH_KEY_PINT }}
+            ${{ secrets.SSH_KEY_PINT_NIX }}
       - uses: DeterminateSystems/nix-installer-action@v10
-      - uses: DeterminateSystems/update-flake-lock@main
+      # We update `pint-src` every night, but we avoid updating `nixpkgs` every
+      # night to avoid frequently invalidating both the CI and users' cache.
+      # Instead, we only update `nixpkgs` on the first Sunday of each month.
+      - id: nixpkgs-update-check
+        run: |
+          TODAY=$(date +%d)
+          DOW=$(date +%u)
+          if [[ $TODAY -le 7 && $DOW -eq 7 ]]; then
+            echo "inputs=nixpkgs pint-src" >> $GITHUB_ENV
+            echo "pr_title=Update flake.lock inputs: nixpkgs, pint-src" >> $GITHUB_ENV
+          else
+            echo "inputs=pint-src" >> $GITHUB_ENV
+            echo "pr_title=Update flake.lock inputs: pint-src" >> $GITHUB_ENV
+          fi
+      - name: Update flake inputs
+        uses: DeterminateSystems/update-flake-lock@main
         with:
-          inputs: pint-src
+          inputs: ${{ env.inputs }}
           token: ${{ secrets.GH_PAT_FOR_CI_UPDATES }}
+          pr-title: ${{ env.pr_title }}
