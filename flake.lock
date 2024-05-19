@@ -19,11 +19,11 @@
     "pint-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1715478752,
-        "narHash": "sha256-7itkdw5iDcbfyOUPT7e2EnPjYLjSUnEduSwSBoD/zeM=",
+        "lastModified": 1715996938,
+        "narHash": "sha256-8ARPdppO1Bt93Lw8kpYJ2lfRs6FB+yOIEiDK3ZWNEPk=",
         "ref": "refs/heads/master",
-        "rev": "38b54a2bc7038528c9ec1f6f37bcb28e335e812d",
-        "revCount": 1172,
+        "rev": "8fc130d3f6f3857403e6cfd22656c7c4f6d0089e",
+        "revCount": 1195,
         "type": "git",
         "url": "ssh://git@github.com/essential-contributions/pint"
       },
