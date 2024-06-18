@@ -7,7 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
     pint-src = {
-      url = "git+ssh://git@github.com/essential-contributions/pint";
+      url = "git+ssh://git@github.com/essential-contributions/pint?ref=mitchmindtree/pint-plugins";
       flake = false;
     };
   };
@@ -38,6 +38,10 @@
       });
 
       apps = perSystemPkgs (pkgs: {
+        pint = {
+          type = "app";
+          program = "${pkgs.pint}/bin/pint";
+        };
         pintc = {
           type = "app";
           program = "${pkgs.pint}/bin/pintc";

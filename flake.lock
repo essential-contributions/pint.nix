@@ -28,6 +28,7 @@
         "url": "ssh://git@github.com/essential-contributions/pint"
       },
       "original": {
+        "ref": "mitchmindtree/pint-plugins",
         "type": "git",
         "url": "ssh://git@github.com/essential-contributions/pint"
       }
