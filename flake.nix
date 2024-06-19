@@ -7,7 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
     pint-src = {
-      url = "git+ssh://git@github.com/essential-contributions/pint?ref=mitchmindtree/pint-plugins";
+      url = "git+ssh://git@github.com/essential-contributions/pint";
       flake = false;
     };
   };
