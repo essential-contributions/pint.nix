@@ -38,6 +38,10 @@
       });
 
       apps = perSystemPkgs (pkgs: {
+        pint = {
+          type = "app";
+          program = "${pkgs.pint}/bin/pint";
+        };
         pintc = {
           type = "app";
           program = "${pkgs.pint}/bin/pintc";
