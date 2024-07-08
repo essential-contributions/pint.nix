@@ -8,10 +8,10 @@ A Nix flake for the Pint intent language.
 
 1. Install Nix, easiest with the [Determinate Systems installer](https://github.com/DeterminateSystems/nix-installer).
 
-2. Use Nix to enter a shell with the `pintc` and `pintfmt` CLIs:
+2. Use Nix to enter a shell with the `pint`, `pintc` and `pintfmt` CLIs:
 
    ```console
-   nix shell git+ssh://git@github.com/essential-contributions/pint.nix
+   nix shell github:essential-contributions/pint.nix
    ```
 
    By default, this installs `pintc` with solving capabilities (via the
@@ -19,12 +19,12 @@ A Nix flake for the Pint intent language.
    constraint checking capabilities, you can use:
 
    ```console
-   nix shell git+ssh://git@github.com/essential-contributions/pint.nix#pint
+   nix shell github:essential-contributions/pint.nix#pint
    ```
 
 3. Check that it works with:
    ```console
-   pintc -h
+   pint -h
    ```
 
 ## Developing pint
@@ -35,7 +35,7 @@ dependencies and environment variables to build pint with solving enabled and
 run the tests. This includes, rust, scip, clang (for bindgen), etc.
 
 ```console
-nix develop git+ssh://git@github.com/essential-contributions/pint.nix
+nix develop github:essential-contributions/pint.nix
 ```
 
 Now when you run `cargo build` or `cargo nextest run`, bindgen will bind to the
