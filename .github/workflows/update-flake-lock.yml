@@ -14,14 +14,6 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          # Note this includes SSH access to our own repo too.
-          # This is necessary for the action to push to the `update_flake_lock_action` branch.
-          ssh-private-key: |
-            ${{ secrets.SSH_KEY_BASE }}
-            ${{ secrets.SSH_KEY_PINT }}
-            ${{ secrets.SSH_KEY_PINT_NIX }}
       - uses: DeterminateSystems/nix-installer-action@v10
       # We update `pint-src` every night, but we avoid updating `nixpkgs` every
       # night to avoid frequently invalidating both the CI and users' cache.

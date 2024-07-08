@@ -11,24 +11,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Test access to upstream repos while they're private.
-  repo-ssh-access:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - repo: essential-base
-          - repo: pint
-    steps:
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: |
-              ${{ secrets.SSH_KEY_BASE }}
-              ${{ secrets.SSH_KEY_PINT }}
-      - run: |
-          git ls-remote ssh://git@github.com/essential-contributions/${{ matrix.repo }}.git HEAD
-
   # Check the nix code is formatted.
   nix-fmt-check:
     runs-on: ubuntu-latest
@@ -51,11 +33,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: |
-              ${{ secrets.SSH_KEY_BASE }}
-              ${{ secrets.SSH_KEY_PINT }}
       - uses: DeterminateSystems/nix-installer-action@v10
       - uses: DeterminateSystems/magic-nix-cache-action@v4
       - run: nix ${{ matrix.command }}
