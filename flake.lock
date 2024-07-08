@@ -19,17 +19,17 @@
     "pint-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1720014121,
-        "narHash": "sha256-qeosExJw70x4oz/ZocvCQThGivnY+Z5f7e6l9cnqGSo=",
-        "ref": "refs/heads/master",
-        "rev": "93b29af222e90f957eb2048e70eeee42c66c04e0",
-        "revCount": 1472,
-        "type": "git",
-        "url": "ssh://git@github.com/essential-contributions/pint"
+        "lastModified": 1720443652,
+        "narHash": "sha256-LeQpbVXJwJcQi1YbDnFdgbcMGVkz6FBkZaRe/guSRAI=",
+        "owner": "essential-contributions",
+        "repo": "pint",
+        "rev": "d9a2c41daa557a612824b95ba028fecc795e98c8",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/essential-contributions/pint"
+        "owner": "essential-contributions",
+        "repo": "pint",
+        "type": "github"
       }
     },
     "root": {
