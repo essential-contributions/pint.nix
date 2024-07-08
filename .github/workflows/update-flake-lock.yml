@@ -38,7 +38,7 @@ jobs:
             echo "pr_title=Update flake.lock inputs: pint-src" >> $GITHUB_ENV
           fi
       - name: Update flake inputs
-        uses: DeterminateSystems/update-flake-lock@v21
+        uses: DeterminateSystems/update-flake-lock@v23
         with:
           inputs: ${{ env.inputs }}
           token: ${{ secrets.GH_PAT_FOR_CI_UPDATES }}
