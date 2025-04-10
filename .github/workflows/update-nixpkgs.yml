@@ -1,0 +1,24 @@
+# A weekly workflow that attempts to update the `nixpkgs` input and opens a
+# PR with the updated flake.lock if there were changes.
+name: update-nixpkgs
+
+on:
+  workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: '0 0 1-7 * 0' # runs at 00:00 UTC on the first Sunday of each month
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v10
+      - uses: DeterminateSystems/update-flake-lock@v23
+        with:
+          inputs: nixpkgs
+          token: ${{ secrets.GH_PAT_FOR_CI_UPDATES }}
+          pr-title: "Update flake.lock inputs: nixpkgs"
+          branch: update_nixpkgs

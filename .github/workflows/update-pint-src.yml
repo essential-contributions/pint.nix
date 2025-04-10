@@ -1,0 +1,24 @@
+# A nightly workflow that attempts to update the `pint-src` input and opens a
+# PR with the updated flake.lock if there were changes.
+name: update-pint-src
+
+on:
+  workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: '0 0 * * *' # runs nightly at 00:00 UTC
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v10
+      - uses: DeterminateSystems/update-flake-lock@v23
+        with:
+          inputs: pint-src
+          token: ${{ secrets.GH_PAT_FOR_CI_UPDATES }}
+          pr-title: "Update flake.lock inputs: pint-src"
+          branch: update_pint_src
